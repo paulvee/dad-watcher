@@ -58,6 +58,7 @@ window = conf["window"]
 confidence = conf["confidence"]
 
 BEEPER = 17  # GPIO 17
+boot_up= True # to avoide a false positive at startup
 
 if DEBUG :
     print ("DEBUG is {}".format(DEBUG))
@@ -202,41 +203,22 @@ def write_log(mode="info", msg=""):
 
 def send_sms(msg='no txt'):
 
-    account_sid = 'AC5b28e585b5315c22adc239a9fedaca64'
-    auth_token = 'e16a7022c4a2318241e20c77d4447a8a'
+    account_sid = ''
+    auth_token = ''
 
     try:
         client = Client(account_sid, auth_token)
 
         message = client.messages.create(
                  body = msg,
-                 from_='+12018627273',
-                 to='+31638891044')
+                 from_='',
+                 to='')
 
         if DEBUG : write_log("info", message.sid)
 
     except Exception as e:
         write_log("error", "Unexpected Exception in send_sms() : \n{0}".format(e))
         return
-
-
-def send_whatsapp(msg='no txt'):
-
-    account_sid = 'AC5b28e585b5315c22adc239a9fedaca64'
-    auth_token = 'e16a7022c4a2318241e20c77d4447a8a'
-    client = Client(account_sid, auth_token)
-
-    if DEBUG :
-        write_log("info", "whatsapp: "+msg)
-        return
-    else:
-        message = client.messages.create(
-                                      body = msg,
-                                      from_='whatsapp:+14155238886',
-                                      to='whatsapp:+31638891044'
-                                  )
-
-    if DEBUG : print(message.sid)
 
 
 def beep():
@@ -348,7 +330,7 @@ def sig_handler (signum=None, frame = None):
 
 
 def main():
-    global ALARM
+    global ALARM, boot_up
 
     write_log("info", "\n\n   ***** Starting up V", VERSION)
 
@@ -456,6 +438,11 @@ def main():
                     # print("moving right")
 
                 # if there is a change in the side, record it as a movement
+                # avoid a false positive at startup
+                if boot_up :
+                    old_side = side
+                    boot_up = False
+
                 if side is not old_side:
                     movement += 1
                     if TEST : beep()
