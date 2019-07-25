@@ -12,6 +12,5 @@
     "twilio_auth_token":  "",   // for Twilio
     "from_cell": "",        // Twilio cell number
     "to_cell": "",          // target cell number
-    "whatsapp_from": ""     // Twilio whatsapp cell number
 }
 
