@@ -15,8 +15,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 def send_mail():
-    fromaddr = "raspberrypi725@gmail.com"
-    toaddr = "pw.versteeg@gmail.com"
+    fromaddr = "yr_pi@mail.com"
+    toaddr = "yr_email@gmail.com"
     msg = MIMEMultipart()
     msg['From'] = fromaddr
     msg['To'] = toaddr
@@ -32,7 +32,7 @@ def send_mail():
     msg.attach(MIMEText(body, 'plain'))
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
-    server.login(fromaddr, "Pensat55")
+    server.login(fromaddr, "yr_password")
     text = msg.as_string()
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
