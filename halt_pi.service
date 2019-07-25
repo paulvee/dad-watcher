@@ -1,0 +1,12 @@
+# halt-and-reset service file, start a daemon on startup
+# file: /etc/systemd/system/halt_pi.service
+#
+[Unit]
+Description=Start halt-pi daemon
+
+[Service]
+RemainAfterExit=true
+ExecStart=/usr/bin/python3 /home/pi/halt_pi.py
+
+[Install]
+WantedBy=multi-user.target

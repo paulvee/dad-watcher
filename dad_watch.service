@@ -1,0 +1,28 @@
+# This service installs a python script.
+# When the script crashes, it can be automatically restarted.
+# If it crashes too many times, it can be forced to fail, or you can let systemd reboot
+#
+# after changes, run: sudo systemctl daemon-reload
+
+[Unit]
+Description=Installing dad_watch script
+Requires=basic.target
+After=multi-user.target
+# a file existence is checked before the unit is started
+ConditionPathExists=/home/pi/do_not_run
+
+[Service]
+ExecStart=/usr/bin/python3 /home/pi/dad_watch.py
+# if it terminates, restart it
+Restart=always
+
+# The number of times the service is restarted within a time period can be set
+# If that condition is met, the RPi can be rebooted
+#
+StartLimitBurst=4
+StartLimitInterval=180s
+# actions can be none|reboot|reboot-force|reboot-immidiate
+StartLimitAction=none
+
+[Install]
+WantedBy=multi-user.target

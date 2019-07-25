@@ -1,0 +1,12 @@
+# run fan service file, start a daemon on startup
+# file: /etc/systemd/system/run_fan.service
+#
+[Unit]
+Description=Start run_fan daemon
+
+[Service]
+RemainAfterExit=true
+ExecStart=/usr/bin/python3 /home/pi/run_fan.py
+
+[Install]
+WantedBy=multi-user.target

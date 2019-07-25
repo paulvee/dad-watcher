@@ -1,0 +1,12 @@
+# run check_app_stop service file, start a daemon on startup
+# file: /etc/systemd/system/check_app_stop.service
+#
+[Unit]
+Description=Start check_app_stop daemon
+
+[Service]
+RemainAfterExit=true
+ExecStart=/usr/bin/python3 /home/pi/check_app_stop.py
+
+[Install]
+WantedBy=multi-user.target
