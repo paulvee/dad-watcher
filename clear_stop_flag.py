@@ -3,7 +3,7 @@
 # Name:        clear_stop_flag.py
 # Purpose:     Clear the manually set file flag that stops the application from
 #              running.
-#              This will be executed at cron around 23:00 hrs.
+#              This will be executed by cron at 23:30 hrs.
 #
 # Author:      paulv
 #
