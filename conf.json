@@ -1,0 +1,17 @@
+{
+    "CORAL_TPU": false,  // using the Coral TPU (true) or else (false)
+    "PI_CAM": true,      // using the webcam (false) or the PiCam (true)
+    "DEBUG": true,      // (true) add more information to the log file or (false)
+    "DAEMON": false,    // if false, systemd is in control, otherwise use the console
+    "SMS": false,        // if true, send SMS
+    "TEST": true,       // if true, beeps at recognition of person
+    "alarm_time": 60,   // time the alarm beeper is running in seconds
+    "window": 3500,     // time moevement detection window in seconds (58 minutes)
+    "confidence": 0.8,  // recognition value, the higher the more reliable
+    "twilio_account_sid": "", // for Twilio
+    "twilio_auth_token":  "",   // for Twilio
+    "from_cell": "",        // Twilio cell number
+    "to_cell": "",          // target cell number
+    "whatsapp_from": ""     // Twilio whatsapp cell number
+}
+
